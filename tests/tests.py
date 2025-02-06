@@ -1,7 +1,11 @@
-# tests/test_main.py
+import sys
+import os
 
-import pytest
-from src.main import add, subtract  # Import functions from main.py
+# Add the src directory to sys.path
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+
+# Import functions from main.py
+from main import add, subtract
 
 def test_add():
     """Test addition function."""
