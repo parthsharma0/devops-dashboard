@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps Insights Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        pre {
+            background: white;
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+            width: 80%;
+            margin: 20px auto;
+            overflow: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>DevOps Insights Dashboard</h1>
+    <p>Click the button below to fetch the latest pipeline status.</p>
+    <button onclick="fetchPipelineStatus()">Get Pipeline Status</button>
+    <pre id="output"></pre>
+
+    <script>
+        function fetchPipelineStatus() {
+            fetch("http://127.0.0.1:8000/pipeline_status")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("output").textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    document.getElementById("output").textContent = "Error fetching data: " + error;
+                });
+        }
+    </script>
+
+</body>
+</html>
